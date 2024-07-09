@@ -1,0 +1,7 @@
+config.json
+node_modules/
+package-lock.json
+pnpm-lock.json
+logs/
+dist/
+data/
