@@ -1,4 +1,4 @@
-import { errorMessage, eventMessage } from './logger';
+import { eventMessage } from './logger';
 import { Client } from 'discord.js';
 import { readdirSync } from 'fs';
 
@@ -17,7 +17,7 @@ export const deployEvents = async (client: Client) => {
       eventMessage(`Successfully loaded ${name}`);
     }
     eventMessage(`Successfully loaded ${count} event(s).`);
-  } catch (error: any) {
-    errorMessage(error);
+  } catch (error) {
+    console.log(error);
   }
 };

@@ -127,13 +127,18 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
         let messages: Message[] = [];
         let lastMessageId = null;
 
+        let shouldContinue = true;
         do {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const fetchedMessages: any = await interaction.channel.messages.fetch({ limit: 100, before: lastMessageId });
-          if (fetchedMessages.size === 0) break;
+          if (fetchedMessages.size === 0) {
+            shouldContinue = false;
+            break;
+          }
 
           fetchedMessages.forEach((msg: Message) => messages.push(msg));
           lastMessageId = fetchedMessages.last().id;
-        } while (true);
+        } while (shouldContinue);
 
         messages = messages
           .filter((msg) => !msg.author.bot || msg.author.id === interaction.client.user.id)
@@ -217,6 +222,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
             allow: permissions,
           },
         ];
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         interaction.channel.permissionOverwrites.cache.forEach((value: any, key) => {
           if (key === user.id) return;
           channelPermissions.push(value);
@@ -249,6 +255,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
             deny: permissions,
           },
         ];
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         interaction.channel.permissionOverwrites.cache.forEach((value: any, key) => {
           if (key === user.id) return;
           channelPermissions.push(value);

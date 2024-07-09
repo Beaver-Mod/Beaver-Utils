@@ -13,7 +13,7 @@ export const execute = async (interaction: Interaction) => {
           `Interaction Event trigged by ${interaction.user.username} (${interaction.user.id}) ran command ${interaction.commandName} in ${interaction.guild.id} in ${interaction.channel.id}`
         );
         await command.execute(interaction);
-      } catch (error: any) {
+      } catch (error) {
         console.log(error);
 
         if (interaction.replied || interaction.deferred) {
@@ -23,7 +23,7 @@ export const execute = async (interaction: Interaction) => {
         }
       }
     }
-  } catch (error: any) {
+  } catch (error) {
     console.log(error);
   }
 };

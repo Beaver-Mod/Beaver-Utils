@@ -115,7 +115,6 @@ const logger = {
   },
 };
 
-
 export const cacheMessage = logger.cache;
 export const eventMessage = logger.event;
 export const errorMessage = logger.error;

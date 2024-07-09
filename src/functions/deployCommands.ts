@@ -1,5 +1,5 @@
 import { Client, Collection, REST, Routes } from 'discord.js';
-import { eventMessage, errorMessage } from './logger';
+import { eventMessage } from './logger';
 import { SlashCommand } from '../types/main';
 import { token } from '../../config.json';
 import { readdirSync } from 'fs';
@@ -23,11 +23,11 @@ export const deployCommands = async (client: Client) => {
           body: commands,
         });
         eventMessage(`Successfully reloaded ${commands.length} application command(s).`);
-      } catch (error: any) {
-        errorMessage(error);
+      } catch (error) {
+        console.log(error);
       }
     })();
-  } catch (error: any) {
-    errorMessage(error);
+  } catch (error) {
+    console.log(error);
   }
 };

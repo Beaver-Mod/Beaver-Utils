@@ -1,4 +1,4 @@
-import { errorMessage, scriptMessage } from './logger';
+import { scriptMessage } from './logger';
 import { readdirSync } from 'fs';
 
 export const deployScripts = async () => {
@@ -15,7 +15,7 @@ export const deployScripts = async () => {
       scriptMessage(`Successfully loaded ${file.split('.')[0]}`);
     }
     scriptMessage(`Successfully loaded ${count} script(s).`);
-  } catch (error: any) {
-    errorMessage(error);
+  } catch (error) {
+    console.log(error);
   }
 };
