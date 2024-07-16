@@ -1,3 +1,4 @@
+import { handleEmbedButtonClick, handleEmbedModelSubmit } from '../functions/embed';
 import { eventMessage } from '../functions/logger';
 import { Interaction } from 'discord.js';
 
@@ -21,6 +22,14 @@ export const execute = async (interaction: Interaction) => {
         } else {
           await interaction.reply({ content: 'Something went wrong', ephemeral: true });
         }
+      }
+    } else if (interaction.isButton()) {
+      if (interaction.customId.startsWith('e.')) {
+        await handleEmbedButtonClick(interaction);
+      }
+    } else if (interaction.isModalSubmit()) {
+      if (interaction.customId.startsWith('e.')) {
+        await handleEmbedModelSubmit(interaction);
       }
     }
   } catch (error) {
